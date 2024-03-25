@@ -56,7 +56,27 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class ImageBanner extends StatelessWidget {
+  final String _assetPath;
+
+  const ImageBanner(this._assetPath, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        constraints: const BoxConstraints.expand(height: 200.0),
+        // decoration: const BoxDecoration(color: Colors.grey),
+        child: Image.asset(
+          _assetPath,
+          fit: BoxFit.cover,
+        ));
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
+
+  TextEditingController loginController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -96,27 +116,24 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-            const Image(
-              image: AssetImage("web/images/logo_associacao_sagrada_familia.png"),
-              fit: BoxFit.cover,
-              height: 400.0,
-              alignment: Alignment.topCenter,
-            ),
+            const ImageBanner("web/images/logo_associacao_sagrada_familia.png"),
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: TextField(
-                decoration: InputDecoration(
+                controller: loginController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Login',
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: TextField(
+                controller: senhaController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Senha',
                 ),
@@ -125,15 +142,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ButtonTheme(
                 height: 60.0,
                 child: FloatingActionButton.extended(
-                  onPressed: () => { print("pressionei o botão"), },
+                  // ignore: avoid_print
+                  onPressed: () => { print(Text(loginController.text)), loginController.clear()},
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), //Text
                   backgroundColor:const Color.fromARGB(162, 0, 255, 170),
                   label: const Text(
                     "Enviar",
                     style: TextStyle(color: Colors.white, fontSize: 30),
                   )
-                ),//RaisedButton
-              ),//ButtonTheme
+                ),
+              ),
           ],
         ),
       ),
