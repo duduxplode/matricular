@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:matricular/LoginController.dart';
 
 void main() {
   runApp(const MyApp());
@@ -75,8 +76,9 @@ class ImageBanner extends StatelessWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  TextEditingController loginController = TextEditingController();
-  TextEditingController senhaController = TextEditingController();
+  TextEditingController loginControl = TextEditingController();
+  TextEditingController senhaControl = TextEditingController();
+  final controllerLogin = LoginController();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: TextField(
-                controller: loginController,
+                controller: loginControl,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Login',
@@ -131,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: TextField(
-                controller: senhaController,
+                controller: senhaControl,
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -143,7 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 60.0,
                 child: FloatingActionButton.extended(
                   // ignore: avoid_print
-                  onPressed: () => { print(Text(loginController.text)), loginController.clear()},
+                  onPressed: () => { 
+                    print(Text(loginControl.text)), 
+                    controllerLogin.login(loginControl.text, senhaControl.text),
+                    senhaControl.clear()
+                    },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), //Text
                   backgroundColor:const Color.fromARGB(162, 0, 255, 170),
                   label: const Text(

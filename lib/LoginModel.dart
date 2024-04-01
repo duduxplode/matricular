@@ -7,7 +7,7 @@ class LoginModel {
   final String nome;
   final String login;
   final String email;
-  final String roles;
+  final List<dynamic> roles;
   final String accessToken;
   final int expiresIn;
   final String refreshToken;

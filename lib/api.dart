@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-const baseUrl = 'http://http://200.137.241.49:808';
+const baseUrl = 'http://200.137.241.49:8080';
 const serverError = 'Falha ao conectar no servidor';
 final dioOptions = BaseOptions(
   baseUrl: baseUrl,
