@@ -1,7 +1,7 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:matricular/LoginController.dart';
+import 'package:matricular/LoginModel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -116,49 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            const ImageBanner("web/images/logo_associacao_sagrada_familia.png"),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              child: TextField(
-                controller: loginControl,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Login',
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              child: TextField(
-                controller: senhaControl,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Senha',
-                ),
-              ),
-            ),
-            ButtonTheme(
-                height: 60.0,
-                child: FloatingActionButton.extended(
-                  // ignore: avoid_print
-                  onPressed: () => { 
-                    print(Text(loginControl.text)), 
-                    controllerLogin.login(loginControl.text, senhaControl.text),
-                    senhaControl.clear()
-                    },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), //Text
-                  backgroundColor:const Color.fromARGB(162, 0, 255, 170),
-                  label: const Text(
-                    "Enviar",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
-                  )
-                ),
-              ),
-          ],
+          children: valida(),
         ),
       ),
       // floatingActionButton: FloatingActionButton(
@@ -168,4 +126,94 @@ class _MyHomePageState extends State<MyHomePage> {
       // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  List<Widget> valida() {
+    if (controllerLogin.loginModel.id == 0) return entradaLogin();
+    else {
+      return principal();
+    }
+  }
+
+  List<Widget> principal() {
+    return <Widget>[
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Text(controllerLogin.loginModel.nome)
+      ),
+      ButtonTheme(
+            height: 60.0,
+            child: FloatingActionButton.extended(
+              // ignore: avoid_print
+              onPressed: () => { 
+                sair()
+                },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), //Text
+              backgroundColor:Color.fromARGB(171, 224, 43, 52),
+              label: const Text(
+                "Sair",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              )
+            ),
+          )
+    ];
+  }
+
+  List<Widget> entradaLogin() {
+    return <Widget>[
+        const ImageBanner("web/images/logo_associacao_sagrada_familia.png"),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          child: TextField(
+            controller: loginControl,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Login',
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          child: TextField(
+            controller: senhaControl,
+            obscureText: true,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Senha',
+            ),
+          ),
+        ),
+        ButtonTheme(
+            height: 60.0,
+            child: FloatingActionButton.extended(
+              // ignore: avoid_print
+              onPressed: () => { 
+                logar(),
+                senhaControl.clear()
+                },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), //Text
+              backgroundColor:const Color.fromARGB(162, 0, 255, 170),
+              label: const Text(
+                "Enviar",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              )
+            ),
+          )
+    ];
+  }
+
+  void logar() async {
+    await controllerLogin.login(loginControl.text, senhaControl.text);
+    setState(() {
+      
+    });
+  }
+
+  void sair() {
+    controllerLogin.loginModel = LoginModel(id: 0, nome: "", login: "", email: "", roles: List.empty(), accessToken: "", expiresIn: 0, refreshToken: "", refreshExpiresIn: 0, statusAtivo: false);
+    loginControl.clear();
+    senhaControl.clear();
+    setState(() {
+      
+    });
+  }
+
 }

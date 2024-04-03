@@ -27,7 +27,7 @@ class LoginRepository {
     } on DioException catch (error) {
       final response = error.response;
       if (response != null) {
-        return Left(LoginRepositoryError(response.data['title']));
+        return Left(LoginRepositoryError(response.data['error']));
       } else {
         return Left(LoginRepositoryError(serverError));
       }

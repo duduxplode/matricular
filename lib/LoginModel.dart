@@ -43,4 +43,6 @@ class LoginModel {
       refreshExpiresIn: json["refreshExpiresIn"],
       statusAtivo: json["statusAtivo"],
     );
+
+    
 }
