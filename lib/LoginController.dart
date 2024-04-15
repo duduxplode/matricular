@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:matricular/LoginError.dart';
-import 'package:matricular/LoginModel.dart';
-import 'package:matricular/LoginRepository.dart';
+import 'package:matricularApp/LoginError.dart';
+import 'package:matricularApp/LoginModel.dart';
+import 'package:matricularApp/LoginRepository.dart';
 
 class LoginController {
   final _repository = LoginRepository();

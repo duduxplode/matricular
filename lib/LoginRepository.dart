@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:matricular/LoginError.dart';
-import 'package:matricular/LoginModel.dart';
-import 'package:matricular/api.dart';
+import 'package:matricularApp/LoginError.dart';
+import 'package:matricularApp/LoginModel.dart';
+import 'package:matricularApp/api.dart';
 
 class LoginRepository {
   final Dio _dio = Dio(dioOptions);
