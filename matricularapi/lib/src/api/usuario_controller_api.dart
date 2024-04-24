@@ -11,7 +11,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/pageable.dart';
-import 'package:matricular/src/model/redefinir_senha_dto.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
 import 'package:matricular/src/model/usuario_dto.dart';
@@ -508,7 +507,7 @@ class UsuarioControllerApi {
   ///
   ///
   /// Parameters:
-  /// * [redefinirSenhaDTO]
+  /// * [body]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -519,7 +518,7 @@ class UsuarioControllerApi {
   /// Returns a [Future] containing a [Response] with a [String] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<String>> usuarioControllerRedefinirSenha({
-    required RedefinirSenhaDTO redefinirSenhaDTO,
+    required String body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -550,9 +549,7 @@ class UsuarioControllerApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(RedefinirSenhaDTO);
-      _bodyData =
-          _serializers.serialize(redefinirSenhaDTO, specifiedType: _type);
+      _bodyData = body;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _options.compose(

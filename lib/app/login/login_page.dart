@@ -1,3 +1,4 @@
+import 'package:built_collection/src/list.dart';
 import 'package:matricular/matricular.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -34,17 +35,17 @@ class _LoginPageState extends State<LoginPage> {
     //WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
       final prefs = await SharedPreferences.getInstance();
-      url.set(prefs.getString('URL') ?? 'http://192.168.10.100');
+      url.set(prefs.getString('URL') ?? 'http://localhost:8080/');
     });
   }
 
   validateForm() async {
     var ok = false;
-    if (password().length > 6) {
+    if (password().length > 4) {
       passwordError.value = null;
       ok = true;
     } else {
-      passwordError.value = 'Erro! Mínimo de 6 caracteres';
+      passwordError.value = 'Erro! Mínimo de 4 caracteres';
     }
 
     if(ok) {
@@ -57,6 +58,21 @@ class _LoginPageState extends State<LoginPage> {
     //   } on DioException catch (e) {
     //     print("Exception when calling ControllerHelloWorldApi->helloWorld: $e\n");
     //   };
+    debugPrint("URL %ss"+url());
+    final authApi = Matricular(basePathOverride: url()).getAuthAPIApi();
+    try {
+      AuthDTOBuilder authDTOBuilder = AuthDTOBuilder();
+      authDTOBuilder.login = login.get();
+      authDTOBuilder.senha = password.get();
+
+      final prefs = await SharedPreferences.getInstance();
+      final response = await authApi.login(authDTO: authDTOBuilder.build());
+      prefs.setString('login', response.data.toString());
+      
+      // print(prefs.getString('login'));
+    } on DioException catch (e) {
+        print("Exception when calling AuthAPIApi->login: $e\n");
+      };
 
     debugPrint("ok validado");
       Routefly.push(routePaths.home);

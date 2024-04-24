@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matricular/matricular.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'pages/login-form/login_form_page.dart';
@@ -9,7 +10,7 @@ Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   
-  
+  CredencialDTO credencialDTO;
   runApp(const MyApp());
 }
 

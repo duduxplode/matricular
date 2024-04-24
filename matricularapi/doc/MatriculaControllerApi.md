@@ -5,13 +5,11 @@
 import 'package:matricular/api.dart';
 ```
 
-All URIs are relative to *http://200.137.241.49:8080*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**matriculaControllerAlterar**](MatriculaControllerApi.md#matriculacontrolleralterar) | **PUT** /api/v1/matricula/{id} | 
-[**matriculaControllerAtualizaContraChequeMatricula**](MatriculaControllerApi.md#matriculacontrolleratualizacontrachequematricula) | **POST** /api/v1/matricula/documento/atualiza-contra-cheque | 
-[**matriculaControllerGetDocumentoMatricula**](MatriculaControllerApi.md#matriculacontrollergetdocumentomatricula) | **GET** /api/v1/matricula/documento/{caminhodoc} | 
 [**matriculaControllerIncluir**](MatriculaControllerApi.md#matriculacontrollerincluir) | **POST** /api/v1/matricula | 
 [**matriculaControllerListAll**](MatriculaControllerApi.md#matriculacontrollerlistall) | **GET** /api/v1/matricula | 
 [**matriculaControllerListAllPage**](MatriculaControllerApi.md#matriculacontrollerlistallpage) | **GET** /api/v1/matricula/page | 
@@ -20,8 +18,6 @@ Method | HTTP request | Description
 [**matriculaControllerSearchFieldsAction**](MatriculaControllerApi.md#matriculacontrollersearchfieldsaction) | **POST** /api/v1/matricula/search-fields | 
 [**matriculaControllerSearchFieldsActionPage**](MatriculaControllerApi.md#matriculacontrollersearchfieldsactionpage) | **POST** /api/v1/matricula/search-fields/page | 
 [**matriculaControllerSearchFieldsList**](MatriculaControllerApi.md#matriculacontrollersearchfieldslist) | **GET** /api/v1/matricula/search-fields | 
-[**matriculaControllerUploadDocumento**](MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documentos | 
-[**matriculaControllerValidaMatricula**](MatriculaControllerApi.md#matriculacontrollervalidamatricula) | **POST** /api/v1/matricula/valida | 
 
 
 # **matriculaControllerAlterar**
@@ -65,92 +61,6 @@ void (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matriculaControllerAtualizaContraChequeMatricula**
-> MatriculaDTO matriculaControllerAtualizaContraChequeMatricula(idMatricula, tipoDocumento, multipartFile)
-
-
-
-### Example
-```dart
-import 'package:matricular/api.dart';
-
-final api = Matricular().getMatriculaControllerApi();
-final int idMatricula = 789; // int | 
-final String tipoDocumento = tipoDocumento_example; // String | 
-final MultipartFile multipartFile = BINARY_DATA_HERE; // MultipartFile | 
-
-try {
-    final response = api.matriculaControllerAtualizaContraChequeMatricula(idMatricula, tipoDocumento, multipartFile);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling MatriculaControllerApi->matriculaControllerAtualizaContraChequeMatricula: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **idMatricula** | **int**|  | 
- **tipoDocumento** | **String**|  | 
- **multipartFile** | **MultipartFile**|  | [optional] 
-
-### Return type
-
-[**MatriculaDTO**](MatriculaDTO.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matriculaControllerGetDocumentoMatricula**
-> Uint8List matriculaControllerGetDocumentoMatricula(caminhodoc)
-
-
-
-### Example
-```dart
-import 'package:matricular/api.dart';
-
-final api = Matricular().getMatriculaControllerApi();
-final String caminhodoc = caminhodoc_example; // String | 
-
-try {
-    final response = api.matriculaControllerGetDocumentoMatricula(caminhodoc);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling MatriculaControllerApi->matriculaControllerGetDocumentoMatricula: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **caminhodoc** | **String**|  | 
-
-### Return type
-
-[**Uint8List**](Uint8List.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -486,92 +396,6 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matriculaControllerUploadDocumento**
-> MatriculaDTO matriculaControllerUploadDocumento(idMatricula, tipoDocumento, multipartFile)
-
-
-
-### Example
-```dart
-import 'package:matricular/api.dart';
-
-final api = Matricular().getMatriculaControllerApi();
-final int idMatricula = 789; // int | 
-final String tipoDocumento = tipoDocumento_example; // String | 
-final MultipartFile multipartFile = BINARY_DATA_HERE; // MultipartFile | 
-
-try {
-    final response = api.matriculaControllerUploadDocumento(idMatricula, tipoDocumento, multipartFile);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling MatriculaControllerApi->matriculaControllerUploadDocumento: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **idMatricula** | **int**|  | 
- **tipoDocumento** | **String**|  | 
- **multipartFile** | **MultipartFile**|  | [optional] 
-
-### Return type
-
-[**MatriculaDTO**](MatriculaDTO.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matriculaControllerValidaMatricula**
-> MatriculaDTO matriculaControllerValidaMatricula(matriculaDTO)
-
-
-
-### Example
-```dart
-import 'package:matricular/api.dart';
-
-final api = Matricular().getMatriculaControllerApi();
-final MatriculaDTO matriculaDTO = ; // MatriculaDTO | 
-
-try {
-    final response = api.matriculaControllerValidaMatricula(matriculaDTO);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling MatriculaControllerApi->matriculaControllerValidaMatricula: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **matriculaDTO** | [**MatriculaDTO**](MatriculaDTO.md)|  | 
-
-### Return type
-
-[**MatriculaDTO**](MatriculaDTO.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -10,8 +10,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AdvertenciaDTO.serializer)
       ..add(AuthDTO.serializer)
       ..add(CredencialDTO.serializer)
-      ..add(DocumentoMatriculaDTO.serializer)
-      ..add(DocumentoMatriculaDTOTipoDocumentoEnum.serializer)
       ..add(EnderecoDTO.serializer)
       ..add(FieldResponse.serializer)
       ..add(ISearchFieldDataObject.serializer)
@@ -24,7 +22,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PessoaDTO.serializer)
       ..add(PkAdvertencia.serializer)
       ..add(PkResponsavel.serializer)
-      ..add(RedefinirSenhaDTO.serializer)
       ..add(ResponsavelDTO.serializer)
       ..add(ResponsavelDTOVinculoEnum.serializer)
       ..add(SearchField.serializer)
@@ -65,11 +62,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<ResponsavelDTO>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AdvertenciaDTO)]),
-          () => new ListBuilder<AdvertenciaDTO>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(DocumentoMatriculaDTO)]),
-          () => new ListBuilder<DocumentoMatriculaDTO>()))
+          () => new ListBuilder<AdvertenciaDTO>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

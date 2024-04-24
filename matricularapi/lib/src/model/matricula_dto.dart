@@ -8,7 +8,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/model/informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/responsavel_dto.dart';
 import 'package:matricular/src/model/date.dart';
-import 'package:matricular/src/model/documento_matricula_dto.dart';
 import 'package:matricular/src/model/necessidade_especial_dto.dart';
 import 'package:matricular/src/model/advertencia_dto.dart';
 import 'package:matricular/src/model/tutor_dto.dart';
@@ -32,7 +31,6 @@ part 'matricula_dto.g.dart';
 /// * [advertencias]
 /// * [turma]
 /// * [informacoesMatricula]
-/// * [documentoMatricula]
 @BuiltValue()
 abstract class MatriculaDTO
     implements Built<MatriculaDTO, MatriculaDTOBuilder> {
@@ -47,7 +45,7 @@ abstract class MatriculaDTO
 
   @BuiltValueField(wireName: r'status')
   MatriculaDTOStatusEnum? get status;
-  // enum statusEnum {  ATIVO,  INATIVO,  AGUARDANDO_RENOVACAO,  AGUARDANDO_ACEITE,  };
+  // enum statusEnum {  ATIVO,  INATIVO,  };
 
   @BuiltValueField(wireName: r'nascimento')
   Date? get nascimento;
@@ -72,9 +70,6 @@ abstract class MatriculaDTO
 
   @BuiltValueField(wireName: r'informacoesMatricula')
   InformacoesMatriculaDTO? get informacoesMatricula;
-
-  @BuiltValueField(wireName: r'documentoMatricula')
-  BuiltList<DocumentoMatriculaDTO>? get documentoMatricula;
 
   MatriculaDTO._();
 
@@ -182,14 +177,6 @@ class _$MatriculaDTOSerializer implements PrimitiveSerializer<MatriculaDTO> {
       yield serializers.serialize(
         object.informacoesMatricula,
         specifiedType: const FullType(InformacoesMatriculaDTO),
-      );
-    }
-    if (object.documentoMatricula != null) {
-      yield r'documentoMatricula';
-      yield serializers.serialize(
-        object.documentoMatricula,
-        specifiedType:
-            const FullType(BuiltList, [FullType(DocumentoMatriculaDTO)]),
       );
     }
   }
@@ -304,14 +291,6 @@ class _$MatriculaDTOSerializer implements PrimitiveSerializer<MatriculaDTO> {
           ) as InformacoesMatriculaDTO;
           result.informacoesMatricula.replace(valueDes);
           break;
-        case r'documentoMatricula':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType:
-                const FullType(BuiltList, [FullType(DocumentoMatriculaDTO)]),
-          ) as BuiltList<DocumentoMatriculaDTO>;
-          result.documentoMatricula.replace(valueDes);
-          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -344,15 +323,9 @@ class _$MatriculaDTOSerializer implements PrimitiveSerializer<MatriculaDTO> {
 class MatriculaDTOStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'ATIVO')
   static const MatriculaDTOStatusEnum ATIVO = _$matriculaDTOStatusEnum_ATIVO;
-  @BuiltValueEnumConst(wireName: r'INATIVO')
+  @BuiltValueEnumConst(wireName: r'INATIVO', fallback: true)
   static const MatriculaDTOStatusEnum INATIVO =
       _$matriculaDTOStatusEnum_INATIVO;
-  @BuiltValueEnumConst(wireName: r'AGUARDANDO_RENOVACAO')
-  static const MatriculaDTOStatusEnum AGUARDANDO_RENOVACAO =
-      _$matriculaDTOStatusEnum_AGUARDANDO_RENOVACAO;
-  @BuiltValueEnumConst(wireName: r'AGUARDANDO_ACEITE', fallback: true)
-  static const MatriculaDTOStatusEnum AGUARDANDO_ACEITE =
-      _$matriculaDTOStatusEnum_AGUARDANDO_ACEITE;
 
   static Serializer<MatriculaDTOStatusEnum> get serializer =>
       _$matriculaDTOStatusEnumSerializer;

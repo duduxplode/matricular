@@ -5,7 +5,7 @@
 import 'package:matricular/api.dart';
 ```
 
-All URIs are relative to *http://200.137.241.49:8080*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -357,7 +357,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **usuarioControllerRedefinirSenha**
-> String usuarioControllerRedefinirSenha(redefinirSenhaDTO)
+> String usuarioControllerRedefinirSenha(body)
 
 
 
@@ -366,10 +366,10 @@ void (empty response body)
 import 'package:matricular/api.dart';
 
 final api = Matricular().getUsuarioControllerApi();
-final RedefinirSenhaDTO redefinirSenhaDTO = ; // RedefinirSenhaDTO | 
+final String body = body_example; // String | 
 
 try {
-    final response = api.usuarioControllerRedefinirSenha(redefinirSenhaDTO);
+    final response = api.usuarioControllerRedefinirSenha(body);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling UsuarioControllerApi->usuarioControllerRedefinirSenha: $e\n');
@@ -380,7 +380,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **redefinirSenhaDTO** | [**RedefinirSenhaDTO**](RedefinirSenhaDTO.md)|  | 
+ **body** | **String**|  | 
 
 ### Return type
 

@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **advertencias** | [**BuiltList&lt;AdvertenciaDTO&gt;**](AdvertenciaDTO.md) |  | [optional] 
 **turma** | [**TurmaDTO**](TurmaDTO.md) |  | [optional] 
 **informacoesMatricula** | [**InformacoesMatriculaDTO**](InformacoesMatriculaDTO.md) |  | [optional] 
-**documentoMatricula** | [**BuiltList&lt;DocumentoMatriculaDTO&gt;**](DocumentoMatriculaDTO.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

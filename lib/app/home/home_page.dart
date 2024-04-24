@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:matricular/matricular.dart';
 import 'package:routefly/routefly.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
 
 
@@ -14,6 +16,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  Future<CredencialDTO> login() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('login');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               const Flexible(
                 flex: 6,
-                child: Text('Inicio'),
+                child: Text(prefs.getString('login')),
               ),
               Flexible(
                 flex: 3,

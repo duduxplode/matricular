@@ -60,7 +60,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://200.137.241.49:8080*
+All URIs are relative to *http://localhost:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -98,8 +98,6 @@ Class | Method | HTTP request | Description
 [*InformacoesMatriculaControllerApi*](doc/InformacoesMatriculaControllerApi.md) | [**informacoesMatriculaControllerSearchFieldsActionPage**](doc/InformacoesMatriculaControllerApi.md#informacoesmatriculacontrollersearchfieldsactionpage) | **POST** /api/v1/infomatricula/search-fields/page | 
 [*InformacoesMatriculaControllerApi*](doc/InformacoesMatriculaControllerApi.md) | [**informacoesMatriculaControllerSearchFieldsList**](doc/InformacoesMatriculaControllerApi.md#informacoesmatriculacontrollersearchfieldslist) | **GET** /api/v1/infomatricula/search-fields | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerAlterar**](doc/MatriculaControllerApi.md#matriculacontrolleralterar) | **PUT** /api/v1/matricula/{id} | 
-[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerAtualizaContraChequeMatricula**](doc/MatriculaControllerApi.md#matriculacontrolleratualizacontrachequematricula) | **POST** /api/v1/matricula/documento/atualiza-contra-cheque | 
-[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerGetDocumentoMatricula**](doc/MatriculaControllerApi.md#matriculacontrollergetdocumentomatricula) | **GET** /api/v1/matricula/documento/{caminhodoc} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerIncluir**](doc/MatriculaControllerApi.md#matriculacontrollerincluir) | **POST** /api/v1/matricula | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListAll**](doc/MatriculaControllerApi.md#matriculacontrollerlistall) | **GET** /api/v1/matricula | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListAllPage**](doc/MatriculaControllerApi.md#matriculacontrollerlistallpage) | **GET** /api/v1/matricula/page | 
@@ -108,8 +106,6 @@ Class | Method | HTTP request | Description
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsAction**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldsaction) | **POST** /api/v1/matricula/search-fields | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsActionPage**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldsactionpage) | **POST** /api/v1/matricula/search-fields/page | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsList**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldslist) | **GET** /api/v1/matricula/search-fields | 
-[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerUploadDocumento**](doc/MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documentos | 
-[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerValidaMatricula**](doc/MatriculaControllerApi.md#matriculacontrollervalidamatricula) | **POST** /api/v1/matricula/valida | 
 [*NecessidadeEspecialControllerApi*](doc/NecessidadeEspecialControllerApi.md) | [**necessidadeEspecialControllerAlterar**](doc/NecessidadeEspecialControllerApi.md#necessidadeespecialcontrolleralterar) | **PUT** /api/v1/necessidade_esp/{id} | 
 [*NecessidadeEspecialControllerApi*](doc/NecessidadeEspecialControllerApi.md) | [**necessidadeEspecialControllerIncluir**](doc/NecessidadeEspecialControllerApi.md#necessidadeespecialcontrollerincluir) | **POST** /api/v1/necessidade_esp | 
 [*NecessidadeEspecialControllerApi*](doc/NecessidadeEspecialControllerApi.md) | [**necessidadeEspecialControllerListAll**](doc/NecessidadeEspecialControllerApi.md#necessidadeespecialcontrollerlistall) | **GET** /api/v1/necessidade_esp | 
@@ -175,7 +171,6 @@ Class | Method | HTTP request | Description
  - [AdvertenciaDTO](doc/AdvertenciaDTO.md)
  - [AuthDTO](doc/AuthDTO.md)
  - [CredencialDTO](doc/CredencialDTO.md)
- - [DocumentoMatriculaDTO](doc/DocumentoMatriculaDTO.md)
  - [EnderecoDTO](doc/EnderecoDTO.md)
  - [FieldResponse](doc/FieldResponse.md)
  - [ISearchFieldDataObject](doc/ISearchFieldDataObject.md)
@@ -187,7 +182,6 @@ Class | Method | HTTP request | Description
  - [PessoaDTO](doc/PessoaDTO.md)
  - [PkAdvertencia](doc/PkAdvertencia.md)
  - [PkResponsavel](doc/PkResponsavel.md)
- - [RedefinirSenhaDTO](doc/RedefinirSenhaDTO.md)
  - [ResponsavelDTO](doc/ResponsavelDTO.md)
  - [SearchField](doc/SearchField.md)
  - [SearchFieldValue](doc/SearchFieldValue.md)

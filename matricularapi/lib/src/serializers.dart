@@ -17,7 +17,6 @@ import 'package:matricular/src/model/date.dart';
 import 'package:matricular/src/model/advertencia_dto.dart';
 import 'package:matricular/src/model/auth_dto.dart';
 import 'package:matricular/src/model/credencial_dto.dart';
-import 'package:matricular/src/model/documento_matricula_dto.dart';
 import 'package:matricular/src/model/endereco_dto.dart';
 import 'package:matricular/src/model/field_response.dart';
 import 'package:matricular/src/model/i_search_field_data_object.dart';
@@ -29,7 +28,6 @@ import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/pessoa_dto.dart';
 import 'package:matricular/src/model/pk_advertencia.dart';
 import 'package:matricular/src/model/pk_responsavel.dart';
-import 'package:matricular/src/model/redefinir_senha_dto.dart';
 import 'package:matricular/src/model/responsavel_dto.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
@@ -44,7 +42,6 @@ part 'serializers.g.dart';
   AdvertenciaDTO,
   AuthDTO,
   CredencialDTO,
-  DocumentoMatriculaDTO,
   EnderecoDTO,
   FieldResponse,
   ISearchFieldDataObject,
@@ -56,7 +53,6 @@ part 'serializers.g.dart';
   PessoaDTO,
   PkAdvertencia,
   PkResponsavel,
-  RedefinirSenhaDTO,
   ResponsavelDTO,
   SearchField,
   SearchFieldValue,
