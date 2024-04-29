@@ -16,13 +16,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  Future<CredencialDTO> login() async {
+  Future<String> login() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('login');
+    print(prefs.getString('token'));
+    return 'Inicio';
   }
 
   @override
   Widget build(BuildContext context) {
+    login();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               const Flexible(
                 flex: 6,
-                child: Text(prefs.getString('login')),
+                child: Text('Inicio'),
               ),
               Flexible(
                 flex: 3,

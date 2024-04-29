@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   late final isValid =
       computed(() => login().isNotEmpty && password().isNotEmpty);
   final passwordError = signal<String?>(null);
+  var prefs = null;
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   void _loadPreferences() {
     //WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
-      final prefs = await SharedPreferences.getInstance();
+      prefs = await SharedPreferences.getInstance();
       url.set(prefs.getString('URL') ?? 'http://localhost:8080/');
     });
   }
@@ -65,114 +66,179 @@ class _LoginPageState extends State<LoginPage> {
       authDTOBuilder.login = login.get();
       authDTOBuilder.senha = password.get();
 
-      final prefs = await SharedPreferences.getInstance();
       final response = await authApi.login(authDTO: authDTOBuilder.build());
-      prefs.setString('login', response.data.toString());
+      CredencialDTO credencialDTO = CredencialDTO();
+      credencialDTO = response.data as CredencialDTO;
+      prefs.setString('token', credencialDTO.accessToken.toString());
+      prefs.setString('login', credencialDTO.login.toString());
+
+      Routefly.push(routePaths.home);
       
       // print(prefs.getString('login'));
     } on DioException catch (e) {
         print("Exception when calling AuthAPIApi->login: $e\n");
-      };
-
-    debugPrint("ok validado");
-      Routefly.push(routePaths.home);
+      };      
       
     }
   }
 
+  sair() async {
+    prefs.setString('login','');
+    prefs.setString('token','');
+    Routefly.push(routePaths.login);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Tela de login'),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          height: MediaQuery.of(context).size.height - 120,
-          //height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Flexible(
-                flex: 6,
-                child: FractionallySizedBox(
-                  widthFactor: 0.6,
-                  child: FittedBox(
-                    fit: BoxFit.fitHeight,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Image(
-                        image: AssetImage("web/images/logo_associacao_sagrada_familia.png")
+    if (prefs != null && prefs.getString('login') != '') {
+      final login = prefs.getString('login');
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text('Tela de login'),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            height: MediaQuery.of(context).size.height - 120,
+            //height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Flexible(
+                  flex: 6,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.6,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Image(
+                          image: AssetImage("web/images/logo_associacao_sagrada_familia.png")
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const Spacer(
-                flex: 2,
-              ),
-              Flexible(
-                  flex: 3,
-                  child: TextField(
-                    onChanged: login.set,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), label: Text("email")),
-                  )),
-              const Spacer(
-                flex: 1,
-              ),
-              Flexible(
-                  flex: 3,
-                  child: TextField(
-                    onChanged: password.set,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        label: const Text("password"),
-                        errorText: passwordError.watch(context)),
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    obscureText: true,
-                  )),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Flexible(
+                const Spacer(
                   flex: 2,
-                  child: Text(
-                    'Forget password',
+                ),
+                const Flexible(
+                  flex: 6,
+                  child: Text('Inicio'),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                Flexible(
+                  flex: 3,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.4,
+                    heightFactor: 0.4,
+                    child: FilledButton(
+                      onPressed: sair,
+                      child: const Text('Sair'),
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: FractionallySizedBox(
-                  widthFactor: 0.4,
-                  heightFactor: 0.4,
-                  child: FilledButton(
-                    onPressed: isValid.watch(context) ? validateForm : null,
-                    child: const Text('Login'),
-                  ),
-                ),
-              ),
-              const Spacer(
-                flex: 2,
-              ),
-              Flexible(
-                flex: 2,
-                child: TextButton(
-                  onPressed: () {
-                    Routefly.push(routePaths.prefs);
-                  },
-                  child: const Text(
-                    'Alterar URL Servidor:',
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text('Tela de login'),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            height: MediaQuery.of(context).size.height - 120,
+            //height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Flexible(
+                  flex: 6,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.6,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Image(
+                          image: AssetImage("web/images/logo_associacao_sagrada_familia.png")
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+                Flexible(
+                    flex: 3,
+                    child: TextField(
+                      onChanged: login.set,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(), label: Text("email")),
+                    )),
+                const Spacer(
+                  flex: 1,
+                ),
+                Flexible(
+                    flex: 3,
+                    child: TextField(
+                      onChanged: password.set,
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          label: const Text("password"),
+                          errorText: passwordError.watch(context)),
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      obscureText: true,
+                    )),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Flexible(
+                    flex: 2,
+                    child: Text(
+                      'Forget password',
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 3,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.4,
+                    heightFactor: 0.4,
+                    child: FilledButton(
+                      onPressed: isValid.watch(context) ? validateForm : null,
+                      child: const Text('Login'),
+                    ),
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+                Flexible(
+                  flex: 2,
+                  child: TextButton(
+                    onPressed: () {
+                      Routefly.push(routePaths.prefs);
+                    },
+                    child: const Text(
+                      'Alterar URL Servidor:',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
   }
 }
