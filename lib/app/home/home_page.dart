@@ -29,6 +29,15 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Home da aplicação'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            tooltip: 'Sair',
+            onPressed: () {
+            
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
