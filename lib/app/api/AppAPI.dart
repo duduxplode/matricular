@@ -13,14 +13,14 @@ class AppAPI{
 
   AppAPI({required this.config}){
 
-    final collegeApi = Matricular(basePathOverride: config.url(),
+    final matricularApi = Matricular(basePathOverride: config.url(),
         interceptors: [
           InterceptorsWrapper(onRequest: (options, handler) {
             options.headers['Authorization'] = 'Bearer '+config.token();
             return handler.next(options);
           })
         ]);
-    api = collegeApi;
+    api = matricularApi;
 
 
     config.url.subscribe((value) {

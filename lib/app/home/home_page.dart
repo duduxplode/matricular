@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:matricular/matricular.dart';
+import 'package:matricularApp/app/api/AppAPI.dart';
+import 'package:matricularApp/app/login/login_state.dart';
+import 'package:matricularApp/routes.dart';
+import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
@@ -15,16 +19,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late AppAPI appAPI;
+  LoginState state = LoginState();
 
-  Future<String> login() async {
-    final prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
-    return 'Inicio';
+  void sair() {
+    appAPI.config.token.set("null");
+    Routefly.navigate(routePaths.login);
   }
 
   @override
   Widget build(BuildContext context) {
-    login();
+    appAPI = context.read<AppAPI>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -33,9 +38,9 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.exit_to_app),
             tooltip: 'Sair',
-            onPressed: () {
-            
-            },
+            onPressed: this.state.isValid.watch(context)
+                        ? null
+                        : () => {sair()},
           ),
         ],
       ),
@@ -51,19 +56,6 @@ class _HomePageState extends State<HomePage> {
                 flex: 6,
                 child: Text('Inicio'),
               ),
-              Flexible(
-                flex: 3,
-                child: FractionallySizedBox(
-                  widthFactor: 0.4,
-                  heightFactor: 0.4,
-                  child: FilledButton(
-                    onPressed: () {
-                      Routefly.pop(context);
-                    },
-                    child: const Text('voltar'),
-                  ),
-                ),
-              )
             ],
           ),
         ),

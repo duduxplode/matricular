@@ -10,6 +10,10 @@ const MatriculaDTOStatusEnum _$matriculaDTOStatusEnum_ATIVO =
     const MatriculaDTOStatusEnum._('ATIVO');
 const MatriculaDTOStatusEnum _$matriculaDTOStatusEnum_INATIVO =
     const MatriculaDTOStatusEnum._('INATIVO');
+const MatriculaDTOStatusEnum _$matriculaDTOStatusEnum_AGUARDANDO_RENOVACAO =
+    const MatriculaDTOStatusEnum._('AGUARDANDO_RENOVACAO');
+const MatriculaDTOStatusEnum _$matriculaDTOStatusEnum_AGUARDANDO_ACEITE =
+    const MatriculaDTOStatusEnum._('AGUARDANDO_ACEITE');
 
 MatriculaDTOStatusEnum _$matriculaDTOStatusEnumValueOf(String name) {
   switch (name) {
@@ -17,8 +21,12 @@ MatriculaDTOStatusEnum _$matriculaDTOStatusEnumValueOf(String name) {
       return _$matriculaDTOStatusEnum_ATIVO;
     case 'INATIVO':
       return _$matriculaDTOStatusEnum_INATIVO;
+    case 'AGUARDANDO_RENOVACAO':
+      return _$matriculaDTOStatusEnum_AGUARDANDO_RENOVACAO;
+    case 'AGUARDANDO_ACEITE':
+      return _$matriculaDTOStatusEnum_AGUARDANDO_ACEITE;
     default:
-      return _$matriculaDTOStatusEnum_INATIVO;
+      return _$matriculaDTOStatusEnum_AGUARDANDO_ACEITE;
   }
 }
 
@@ -26,6 +34,8 @@ final BuiltSet<MatriculaDTOStatusEnum> _$matriculaDTOStatusEnumValues =
     new BuiltSet<MatriculaDTOStatusEnum>(const <MatriculaDTOStatusEnum>[
   _$matriculaDTOStatusEnum_ATIVO,
   _$matriculaDTOStatusEnum_INATIVO,
+  _$matriculaDTOStatusEnum_AGUARDANDO_RENOVACAO,
+  _$matriculaDTOStatusEnum_AGUARDANDO_ACEITE,
 ]);
 
 Serializer<MatriculaDTOStatusEnum> _$matriculaDTOStatusEnumSerializer =
@@ -36,10 +46,14 @@ class _$MatriculaDTOStatusEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'ATIVO': 'ATIVO',
     'INATIVO': 'INATIVO',
+    'AGUARDANDO_RENOVACAO': 'AGUARDANDO_RENOVACAO',
+    'AGUARDANDO_ACEITE': 'AGUARDANDO_ACEITE',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'ATIVO': 'ATIVO',
     'INATIVO': 'INATIVO',
+    'AGUARDANDO_RENOVACAO': 'AGUARDANDO_RENOVACAO',
+    'AGUARDANDO_ACEITE': 'AGUARDANDO_ACEITE',
   };
 
   @override
@@ -84,6 +98,8 @@ class _$MatriculaDTO extends MatriculaDTO {
   final TurmaDTO? turma;
   @override
   final InformacoesMatriculaDTO? informacoesMatricula;
+  @override
+  final BuiltList<DocumentoMatriculaDTO>? documentoMatricula;
 
   factory _$MatriculaDTO([void Function(MatriculaDTOBuilder)? updates]) =>
       (new MatriculaDTOBuilder()..update(updates))._build();
@@ -100,7 +116,8 @@ class _$MatriculaDTO extends MatriculaDTO {
       this.responsaveis,
       this.advertencias,
       this.turma,
-      this.informacoesMatricula})
+      this.informacoesMatricula,
+      this.documentoMatricula})
       : super._();
 
   @override
@@ -125,7 +142,8 @@ class _$MatriculaDTO extends MatriculaDTO {
         responsaveis == other.responsaveis &&
         advertencias == other.advertencias &&
         turma == other.turma &&
-        informacoesMatricula == other.informacoesMatricula;
+        informacoesMatricula == other.informacoesMatricula &&
+        documentoMatricula == other.documentoMatricula;
   }
 
   @override
@@ -143,6 +161,7 @@ class _$MatriculaDTO extends MatriculaDTO {
     _$hash = $jc(_$hash, advertencias.hashCode);
     _$hash = $jc(_$hash, turma.hashCode);
     _$hash = $jc(_$hash, informacoesMatricula.hashCode);
+    _$hash = $jc(_$hash, documentoMatricula.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -161,7 +180,8 @@ class _$MatriculaDTO extends MatriculaDTO {
           ..add('responsaveis', responsaveis)
           ..add('advertencias', advertencias)
           ..add('turma', turma)
-          ..add('informacoesMatricula', informacoesMatricula))
+          ..add('informacoesMatricula', informacoesMatricula)
+          ..add('documentoMatricula', documentoMatricula))
         .toString();
   }
 }
@@ -229,6 +249,13 @@ class MatriculaDTOBuilder
           InformacoesMatriculaDTOBuilder? informacoesMatricula) =>
       _$this._informacoesMatricula = informacoesMatricula;
 
+  ListBuilder<DocumentoMatriculaDTO>? _documentoMatricula;
+  ListBuilder<DocumentoMatriculaDTO> get documentoMatricula =>
+      _$this._documentoMatricula ??= new ListBuilder<DocumentoMatriculaDTO>();
+  set documentoMatricula(
+          ListBuilder<DocumentoMatriculaDTO>? documentoMatricula) =>
+      _$this._documentoMatricula = documentoMatricula;
+
   MatriculaDTOBuilder() {
     MatriculaDTO._defaults(this);
   }
@@ -248,6 +275,7 @@ class MatriculaDTOBuilder
       _advertencias = $v.advertencias?.toBuilder();
       _turma = $v.turma?.toBuilder();
       _informacoesMatricula = $v.informacoesMatricula?.toBuilder();
+      _documentoMatricula = $v.documentoMatricula?.toBuilder();
       _$v = null;
     }
     return this;
@@ -283,7 +311,8 @@ class MatriculaDTOBuilder
               responsaveis: _responsaveis?.build(),
               advertencias: _advertencias?.build(),
               turma: _turma?.build(),
-              informacoesMatricula: _informacoesMatricula?.build());
+              informacoesMatricula: _informacoesMatricula?.build(),
+              documentoMatricula: _documentoMatricula?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -299,6 +328,8 @@ class MatriculaDTOBuilder
         _turma?.build();
         _$failedField = 'informacoesMatricula';
         _informacoesMatricula?.build();
+        _$failedField = 'documentoMatricula';
+        _documentoMatricula?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'MatriculaDTO', _$failedField, e.toString());

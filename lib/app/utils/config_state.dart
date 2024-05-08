@@ -12,7 +12,7 @@ class ConfigState {
   bool disposeCtrl = false;
   ConfigState({required this.prefs}) {
     prefs.read(STORE_URL_KEY).then((value) {
-      url.set(value != '' ? value : 'http://localhost:8080');
+      url.set(value != '' ? value : 'http://200.137.241.49:8080');
     });
     prefs.read(STORE_TOKEY_KEY).then((value) {
       if(value!="") {
@@ -29,7 +29,8 @@ class ConfigState {
 
     token.subscribe((value) {
       if(disposeCtrl == false && value != ""){
-        prefs.write(STORE_TOKEY_KEY, value);
+        if(value == "null") prefs.write(STORE_TOKEY_KEY, "");
+        else prefs.write(STORE_TOKEY_KEY, value);
         debugPrint("set-TOKEN:${token()}");
       }
     });

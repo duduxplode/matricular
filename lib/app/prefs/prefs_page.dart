@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:matricularApp/routes.dart';
+import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
+
+import '../api/AppAPI.dart';
 
 class PrefsPage extends StatefulWidget {
   const PrefsPage({super.key});
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => MultiProvider(
+          providers: [
+            Provider(create: (_) => context.read<AppAPI>(),
+            dispose: (_, instance) => instance.dispose(),)
+          ],
+          builder: (context, child) {
+            return PrefsPage();
+          },
+        )
+    );
+  }
 
   @override
   State<PrefsPage> createState() => _PrefsPageState();
@@ -14,31 +29,19 @@ class PrefsPage extends StatefulWidget {
 
 class _PrefsPageState extends State<PrefsPage> {
   final url = signal('');
+
   final formKey = GlobalKey<FormState>();
   final urlTextController = TextEditingController();
+  late final isValid = computed(() {
+    debugPrint("isValid Compute: ${url()}");
+    return url().isNotEmpty;
+  });
+  //late final isValid = computed(() => url().isNotEmpty);
+  final Signal<String?> urlError = signal<String?>(null);
 
-  @override
-  void initState() {
-    _loadPreferences();
-    super.initState();
-  }
+  AppAPI? appAPI;
 
-  // Method to load the shared preference data
-  void _loadPreferences() {
-    //WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
-      final prefs = await SharedPreferences.getInstance();
-      url.set(prefs.getString('URL') ?? 'http://localhost:8080/');
-      urlTextController.text = url();
-      //setState(() {});
-    });
-  }
-
-  late final isValid = computed(() => url().isNotEmpty);
-  final urlError = signal<String?>(null);
-
-  validateForm() async {
-    final prefs = await SharedPreferences.getInstance();
+  validateForm(BuildContext context) async {
     var ok = false;
     if (url().length > 6) {
       urlError.value = null;
@@ -49,7 +52,8 @@ class _PrefsPageState extends State<PrefsPage> {
 
     if (ok) {
       debugPrint("ok validado");
-      prefs.setString("URL", url());
+      appAPI?.config.url.set(url());
+
 
       Routefly.pop(context);
     }
@@ -57,6 +61,14 @@ class _PrefsPageState extends State<PrefsPage> {
 
   @override
   Widget build(BuildContext context) {
+    if(appAPI == null) {
+      appAPI = context.read<AppAPI>();
+      url.set(appAPI?.config.url() ?? "");
+      urlTextController.text = url();
+    }
+
+
+    //debugPrint("build-prefs:${prefs?.url}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -97,7 +109,8 @@ class _PrefsPageState extends State<PrefsPage> {
                     heightFactor: 0.4,
                     child: Row(children: [
                       FilledButton(
-                        onPressed: isValid.watch(context) ? validateForm : null,
+                        onPressed: isValid.watch(context) ? () => {validateForm(context)} : null,
+                        //onPressed: true ? () => {validateForm(context)} : null,
                         child: const Text('Salvar'),
                       ),
                       const Spacer(

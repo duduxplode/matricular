@@ -17,20 +17,36 @@ import 'package:matricular/src/model/date.dart';
 import 'package:matricular/src/model/advertencia_dto.dart';
 import 'package:matricular/src/model/auth_dto.dart';
 import 'package:matricular/src/model/credencial_dto.dart';
+import 'package:matricular/src/model/documento_matricula_dto.dart';
 import 'package:matricular/src/model/endereco_dto.dart';
 import 'package:matricular/src/model/field_response.dart';
 import 'package:matricular/src/model/i_search_field_data_object.dart';
 import 'package:matricular/src/model/informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/matricula_dto.dart';
+import 'package:matricular/src/model/matricula_listagem_dto.dart';
+import 'package:matricular/src/model/matricula_visualizar_dto.dart';
 import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/necessidade_especial_dto.dart';
+import 'package:matricular/src/model/page_advertencia_dto.dart';
+import 'package:matricular/src/model/page_endereco_dto.dart';
+import 'package:matricular/src/model/page_informacoes_matricula_dto.dart';
+import 'package:matricular/src/model/page_matricula_dto.dart';
+import 'package:matricular/src/model/page_necessidade_especial_dto.dart';
+import 'package:matricular/src/model/page_pessoa_dto.dart';
+import 'package:matricular/src/model/page_responsavel_dto.dart';
+import 'package:matricular/src/model/page_turma_dto.dart';
+import 'package:matricular/src/model/page_tutor_dto.dart';
+import 'package:matricular/src/model/page_usuario_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
+import 'package:matricular/src/model/pageable_object.dart';
 import 'package:matricular/src/model/pessoa_dto.dart';
 import 'package:matricular/src/model/pk_advertencia.dart';
 import 'package:matricular/src/model/pk_responsavel.dart';
+import 'package:matricular/src/model/redefinir_senha_dto.dart';
 import 'package:matricular/src/model/responsavel_dto.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
+import 'package:matricular/src/model/sort_object.dart';
 import 'package:matricular/src/model/turma_dto.dart';
 import 'package:matricular/src/model/tutor_dto.dart';
 import 'package:matricular/src/model/usuario_dto.dart';
@@ -42,20 +58,36 @@ part 'serializers.g.dart';
   AdvertenciaDTO,
   AuthDTO,
   CredencialDTO,
+  DocumentoMatriculaDTO,
   EnderecoDTO,
   FieldResponse,
   ISearchFieldDataObject,
   InformacoesMatriculaDTO,
   MatriculaDTO,
+  MatriculaListagemDTO,
+  MatriculaVisualizarDTO,
   MessageResponse,
   NecessidadeEspecialDTO,
+  PageAdvertenciaDTO,
+  PageEnderecoDTO,
+  PageInformacoesMatriculaDTO,
+  PageMatriculaDTO,
+  PageNecessidadeEspecialDTO,
+  PagePessoaDTO,
+  PageResponsavelDTO,
+  PageTurmaDTO,
+  PageTutorDTO,
+  PageUsuarioDTO,
   Pageable,
+  PageableObject,
   PessoaDTO,
   PkAdvertencia,
   PkResponsavel,
+  RedefinirSenhaDTO,
   ResponsavelDTO,
   SearchField,
   SearchFieldValue,
+  SortObject,
   TurmaDTO,
   TutorDTO,
   UsuarioDTO,
@@ -63,12 +95,56 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchField)]),
-        () => ListBuilder<SearchField>(),
+        const FullType(BuiltList, [FullType(MatriculaDTO)]),
+        () => ListBuilder<MatriculaDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(EnderecoDTO)]),
+        () => ListBuilder<EnderecoDTO>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(bool)]),
         () => ListBuilder<bool>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MatriculaListagemDTO)]),
+        () => ListBuilder<MatriculaListagemDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(NecessidadeEspecialDTO)]),
+        () => ListBuilder<NecessidadeEspecialDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UsuarioDTO)]),
+        () => ListBuilder<UsuarioDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AdvertenciaDTO)]),
+        () => ListBuilder<AdvertenciaDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ResponsavelDTO)]),
+        () => ListBuilder<ResponsavelDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(InformacoesMatriculaDTO)]),
+        () => ListBuilder<InformacoesMatriculaDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchField)]),
+        () => ListBuilder<SearchField>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(int)]),
+        () => ListBuilder<int>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PessoaDTO)]),
+        () => ListBuilder<PessoaDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TutorDTO)]),
+        () => ListBuilder<TutorDTO>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchFieldValue)]),
@@ -81,6 +157,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CredencialDTO)]),
         () => ListBuilder<CredencialDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TurmaDTO)]),
+        () => ListBuilder<TurmaDTO>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
