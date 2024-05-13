@@ -51,5 +51,10 @@ void main() {
     test('to test the property `quantidadeAlunos`', () async {
       // TODO
     });
+
+    // BuiltList<MatriculaListagemDTO> alunos
+    test('to test the property `alunos`', () async {
+      // TODO
+    });
   });
 }

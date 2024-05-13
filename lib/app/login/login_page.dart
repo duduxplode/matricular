@@ -121,22 +121,24 @@ class _LoginPageState extends State<LoginPage> {
               const Flexible(
                 flex: 6,
                 child: FractionallySizedBox(
-                  widthFactor: 0.6,
+                  widthFactor: 1,
+                  alignment: Alignment.center,
                   child: FittedBox(
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.none,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Image(
                         image: AssetImage("web/images/logo_associacao_sagrada_familia.png"),
+                        width: 600,
                         fit: BoxFit.contain,
                       ),
                     ),
                   ),
                 ),
               ),
-              const Spacer(
-                flex: 2,
-              ),
+              //const Spacer(
+               // flex: 2,
+              //),
               Flexible(
                   flex: 3,
                   child: TextField(

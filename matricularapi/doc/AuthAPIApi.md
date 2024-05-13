@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **getInfoByToken**
-> BuiltList<CredencialDTO> getInfoByToken(authorization)
+> CredencialDTO getInfoByToken(authorization)
 
 
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList&lt;CredencialDTO&gt;**](CredencialDTO.md)
+[**CredencialDTO**](CredencialDTO.md)
 
 ### Authorization
 

@@ -5,6 +5,8 @@ import 'app/login/login_page.dart' as a1;
 import 'app/login_form/login_form_page.dart' as a2;
 import 'app/prefs/prefs_page.dart' as a3;
 import 'app/matricula/list_matricula_page.dart' as a4;
+import 'app/conta/conta_page.dart' as a5;
+import 'app/contato/contato_page.dart' as a6;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -52,6 +54,24 @@ List<RouteEntity> get routes => [
       const a4.StartPage(),
     ),
   ),
+  RouteEntity(
+    key: '/conta',
+    uri: Uri.parse('/conta'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a5.StartPage(),
+    ),
+  ),
+  RouteEntity(
+    key: '/contato',
+    uri: Uri.parse('/contato'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a6.StartPage(),
+    ),
+  ),
 ];
 
 const routePaths = (
@@ -60,5 +80,7 @@ const routePaths = (
   login: '/login',
   loginForm: '/login_form',
   prefs: '/prefs',
-  matricula: '/matricula'
+  matricula: '/matricula',
+  conta: '/conta',
+  contato: '/contato'
 );

@@ -22,21 +22,21 @@ void main() {
 
     // Método utilizado para realizar a inclusão de um entidade
     //
-    //Future usuarioControllerIncluir(UsuarioDTO usuarioDTO) async
+    //Future<UsuarioDTO> usuarioControllerIncluir(UsuarioDTO usuarioDTO) async
     test('test usuarioControllerIncluir', () async {
       // TODO
     });
 
     // Listagem Geral
     //
-    //Future usuarioControllerListAll() async
+    //Future<BuiltList<UsuarioDTO>> usuarioControllerListAll() async
     test('test usuarioControllerListAll', () async {
       // TODO
     });
 
     // Listagem Geral paginada
     //
-    //Future usuarioControllerListAllPage(Pageable page) async
+    //Future<PageUsuarioDTO> usuarioControllerListAllPage(Pageable page) async
     test('test usuarioControllerListAllPage', () async {
       // TODO
     });
@@ -57,7 +57,7 @@ void main() {
 
     // Obter os dados completos de uma entidiade pelo id informado!
     //
-    //Future usuarioControllerObterPorId(int id) async
+    //Future<UsuarioDTO> usuarioControllerObterPorId(int id) async
     test('test usuarioControllerObterPorId', () async {
       // TODO
     });
@@ -69,21 +69,21 @@ void main() {
 
     // Método utilizado para remover uma entidiade pela id informado
     //
-    //Future usuarioControllerRemover(int id) async
+    //Future<UsuarioDTO> usuarioControllerRemover(int id) async
     test('test usuarioControllerRemover', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future usuarioControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
+    //Future<BuiltList<UsuarioDTO>> usuarioControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
     test('test usuarioControllerSearchFieldsAction', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future usuarioControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
+    //Future<PageUsuarioDTO> usuarioControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
     test('test usuarioControllerSearchFieldsActionPage', () async {
       // TODO
     });

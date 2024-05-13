@@ -46,7 +46,7 @@ class StartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Tela de matrículas '),
+        title: Text('Matrículas '),
       ),
       body: FutureBuilder<Response<BuiltList<MatriculaDTO>>>(
           future: _getData(matriculaControllerApi),
@@ -77,6 +77,8 @@ class StartPage extends StatelessWidget {
 
   void onTabTapped(int index) {
     if(index==0) Routefly.navigate(routePaths.home);
+    if(index==1) Routefly.navigate(routePaths.conta);
+    if(index==2) Routefly.navigate(routePaths.contato);
   }
 
   Widget buildListView(AsyncSnapshot<Response<BuiltList<MatriculaDTO>>> snapshot) {
@@ -100,10 +102,10 @@ class StartPage extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         leading: Icon(Icons.account_box, size: 60),
-                        title: Text("id:${snapshot.data!.data?[index].id}",
+                        title: Text("Código: ${snapshot.data!.data?[index].id}",
                             style: TextStyle(fontSize: 22.0)),
                         subtitle: Text(
-                            "status:${snapshot.data!.data?[index].status} criança:${snapshot.data!.data?[index].nome}",
+                            "Status: ${snapshot.data!.data?[index].status} Criança: ${snapshot.data!.data?[index].nome}",
                             style: TextStyle(fontSize: 18.0)),
                       ),
                       ButtonBar(

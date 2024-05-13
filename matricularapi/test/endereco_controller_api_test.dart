@@ -8,56 +8,56 @@ void main() {
   group(EnderecoControllerApi, () {
     // Método utilizado para altlerar os dados de uma entidiade
     //
-    //Future enderecoControllerAlterar(int id, EnderecoDTO enderecoDTO) async
+    //Future<EnderecoDTO> enderecoControllerAlterar(int id, EnderecoDTO enderecoDTO) async
     test('test enderecoControllerAlterar', () async {
       // TODO
     });
 
     // Método utilizado para realizar a inclusão de um entidade
     //
-    //Future enderecoControllerIncluir(EnderecoDTO enderecoDTO) async
+    //Future<EnderecoDTO> enderecoControllerIncluir(EnderecoDTO enderecoDTO) async
     test('test enderecoControllerIncluir', () async {
       // TODO
     });
 
     // Listagem Geral
     //
-    //Future enderecoControllerListAll() async
+    //Future<BuiltList<EnderecoDTO>> enderecoControllerListAll() async
     test('test enderecoControllerListAll', () async {
       // TODO
     });
 
     // Listagem Geral paginada
     //
-    //Future enderecoControllerListAllPage(Pageable page) async
+    //Future<PageEnderecoDTO> enderecoControllerListAllPage(Pageable page) async
     test('test enderecoControllerListAllPage', () async {
       // TODO
     });
 
     // Obter os dados completos de uma entidiade pelo id informado!
     //
-    //Future enderecoControllerObterPorId(int id) async
+    //Future<EnderecoDTO> enderecoControllerObterPorId(int id) async
     test('test enderecoControllerObterPorId', () async {
       // TODO
     });
 
     // Método utilizado para remover uma entidiade pela id informado
     //
-    //Future enderecoControllerRemover(int id) async
+    //Future<EnderecoDTO> enderecoControllerRemover(int id) async
     test('test enderecoControllerRemover', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future enderecoControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
+    //Future<BuiltList<EnderecoDTO>> enderecoControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
     test('test enderecoControllerSearchFieldsAction', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future enderecoControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
+    //Future<PageEnderecoDTO> enderecoControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
     test('test enderecoControllerSearchFieldsActionPage', () async {
       // TODO
     });

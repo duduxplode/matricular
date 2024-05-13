@@ -9,16 +9,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
 
 
-class HomePage extends StatefulWidget {
+class StartPage extends StatefulWidget {
   
 
-  const HomePage({super.key});
+  const StartPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<StartPage> createState() => _StartPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _StartPageState extends State<StartPage> {
   late AppAPI appAPI;
   LoginState state = LoginState();
 
@@ -30,12 +30,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     appAPI = context.read<AppAPI>();
-    if(appAPI.config.token.get() == "null" || 
-      appAPI.config.token.get() == "") Routefly.navigate(routePaths.login);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Home'),
+        title: Text('Contato'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.exit_to_app),
@@ -63,12 +61,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-				currentIndex: 0,
+				currentIndex: 2,
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "Minhas matrículas",
+              icon: Icon(Icons.home),
+              label: "Home",
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
@@ -84,7 +82,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onTabTapped(int index) {
-    if(index==0) Routefly.navigate(routePaths.matricula);
+    if(index==0) Routefly.navigate(routePaths.home);
     if(index==1) Routefly.navigate(routePaths.conta);
     if(index==2) Routefly.navigate(routePaths.contato);
   }

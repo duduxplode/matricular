@@ -8,7 +8,7 @@ void main() {
   group(AuthAPIApi, () {
     // Recupera as informações do Usuário conforme o token informado.
     //
-    //Future<BuiltList<CredencialDTO>> getInfoByToken(String authorization) async
+    //Future<CredencialDTO> getInfoByToken(String authorization) async
     test('test getInfoByToken', () async {
       // TODO
     });
@@ -22,7 +22,7 @@ void main() {
 
     // Concede o token de acesso ao Usuário através do 'login' e 'senha'.
     //
-    //Future<BuiltList<CredencialDTO>> login(AuthDTO authDTO) async
+    //Future<CredencialDTO> login(AuthDTO authDTO) async
     test('test login', () async {
       // TODO
     });

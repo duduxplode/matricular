@@ -8,56 +8,56 @@ void main() {
   group(PessoaControllerApi, () {
     // Método utilizado para altlerar os dados de uma entidiade
     //
-    //Future pessoaControllerAlterar(String id, PessoaDTO pessoaDTO) async
+    //Future<PessoaDTO> pessoaControllerAlterar(String id, PessoaDTO pessoaDTO) async
     test('test pessoaControllerAlterar', () async {
       // TODO
     });
 
     // Método utilizado para realizar a inclusão de um entidade
     //
-    //Future pessoaControllerIncluir(PessoaDTO pessoaDTO) async
+    //Future<PessoaDTO> pessoaControllerIncluir(PessoaDTO pessoaDTO) async
     test('test pessoaControllerIncluir', () async {
       // TODO
     });
 
     // Listagem Geral
     //
-    //Future pessoaControllerListAll() async
+    //Future<BuiltList<PessoaDTO>> pessoaControllerListAll() async
     test('test pessoaControllerListAll', () async {
       // TODO
     });
 
     // Listagem Geral paginada
     //
-    //Future pessoaControllerListAllPage(Pageable page) async
+    //Future<PagePessoaDTO> pessoaControllerListAllPage(Pageable page) async
     test('test pessoaControllerListAllPage', () async {
       // TODO
     });
 
     // Obter os dados completos de uma entidiade pelo id informado!
     //
-    //Future pessoaControllerObterPorId(String id) async
+    //Future<PessoaDTO> pessoaControllerObterPorId(String id) async
     test('test pessoaControllerObterPorId', () async {
       // TODO
     });
 
     // Método utilizado para remover uma entidiade pela id informado
     //
-    //Future pessoaControllerRemover(String id) async
+    //Future<PessoaDTO> pessoaControllerRemover(String id) async
     test('test pessoaControllerRemover', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future pessoaControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
+    //Future<BuiltList<PessoaDTO>> pessoaControllerSearchFieldsAction(BuiltList<SearchFieldValue> searchFieldValue) async
     test('test pessoaControllerSearchFieldsAction', () async {
       // TODO
     });
 
     // Realiza a busca pelos valores dos campos informados
     //
-    //Future pessoaControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
+    //Future<PagePessoaDTO> pessoaControllerSearchFieldsActionPage(BuiltList<SearchFieldValue> searchFieldValue, { int page, int size, BuiltList<String> sort }) async
     test('test pessoaControllerSearchFieldsActionPage', () async {
       // TODO
     });
