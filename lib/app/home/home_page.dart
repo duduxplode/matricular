@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     appAPI = context.read<AppAPI>();
+    if(appAPI.config.token.get() == "null" || 
+      appAPI.config.token.get() == "") Routefly.navigate(routePaths.login);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -60,6 +62,28 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+				currentIndex: 0,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: "Minhas matrículas",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Minha conta"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.contacts),
+              label: "Contatos"
+          ),
+        ],
+      ),
     );
+  }
+
+  void onTabTapped(int index) {
+    if(index==0) Routefly.navigate(routePaths.matricula);
   }
 }

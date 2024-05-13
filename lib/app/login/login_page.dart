@@ -102,7 +102,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     appAPI = context.read<AppAPI>();
     matricularApi = appAPI.api;
-    if(appAPI.config.token.get() != "") Routefly.navigate(routePaths.home);
+    if(appAPI.config.token.get() != "null") 
+      if(appAPI.config.token.get() != "") Routefly.navigate(routePaths.home);
 
     return Scaffold(
       appBar: AppBar(
