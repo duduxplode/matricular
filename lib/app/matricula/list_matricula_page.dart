@@ -123,9 +123,7 @@ class StartPage extends StatelessWidget {
         },
       );
     } else if (snapshot.hasError) {
-      if(snapshot.data?.statusCode == 403)
-        return Text('Erro ao acessar dados. Favor fazer login novamente!');
-      return Text('Erro ao acessar dados');
+      return Text('Erro ao acessar dados. Favor refazer login!');
     } else {
       return CircularProgressIndicator();
     }
