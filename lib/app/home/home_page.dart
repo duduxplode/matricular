@@ -56,7 +56,10 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               const Flexible(
                 flex: 6,
-                child: Text('Inicio'),
+                child: Text(
+                  'Inicio',
+                  style: TextStyle(fontSize: 20)
+                  ),
               ),
             ],
           ),

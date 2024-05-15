@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class StartPage extends StatefulWidget {
@@ -25,6 +26,40 @@ class _StartPageState extends State<StartPage> {
   void sair() {
     appAPI.config.token.set("null");
     Routefly.navigate(routePaths.login);
+  }
+
+  abrirWhatsApp() async {
+    var whatsappUrl = "whatsapp://send?phone=5562992536082&text=Olá,tudo bem ?";
+
+    if (await canLaunchUrl(Uri.parse(whatsappUrl))) {
+      await launchUrl(Uri.parse(whatsappUrl));
+    } else {
+      throw 'Could not launch $whatsappUrl';
+    }
+  }
+  abrirGoogleMaps() async {
+    const urlMap = "https://www.google.com/maps/search/?api=1&query=-22.9732303,-43.2032649";
+    if (await canLaunchUrl(Uri.parse(urlMap))) {
+      await launchUrl(Uri.parse(urlMap));
+    } else {
+      throw 'Could not launch Maps';
+    }
+  }
+  fazerLigacao() async {
+    const url = "tel:62992536082";
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  void abrirInstagram() async {
+    var messengerUrl = 'https://instagram.com/crechesagradafamilia';
+    if (await canLaunchUrl(Uri.parse(messengerUrl))) {
+      await launchUrl(Uri.parse(messengerUrl));
+    } else {
+      throw 'Could not launch $messengerUrl';
+    }
   }
 
   @override
@@ -52,9 +87,12 @@ class _StartPageState extends State<StartPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Flexible(
+              Flexible(
                 flex: 6,
-                child: Text('Inicio'),
+                child: TextButton(
+                          onPressed: () {abrirWhatsApp();},
+                          child: const Text('WhatsApp'),
+                        ),
               ),
             ],
           ),

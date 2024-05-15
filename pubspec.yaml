@@ -39,6 +39,7 @@ dependencies:
   openapi_generator_annotations: ^5.0.2
   provider: ^6.1.2
   flutter_secure_storage: ^9.1.1
+  url_launcher: ^6.1.10
   matricular:
     path: matricularapi
 

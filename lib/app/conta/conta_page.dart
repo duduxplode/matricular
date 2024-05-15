@@ -89,6 +89,10 @@ class _StartPageState extends State<StartPage> {
     );
   }
 
+  validateForm(BuildContext context) async {
+    print("object");
+  }
+
   Widget buildView(AsyncSnapshot<Response<CredencialDTO>> snapshot) {
     if (snapshot.hasData) {
       return SingleChildScrollView(
@@ -102,11 +106,31 @@ class _StartPageState extends State<StartPage> {
                   children: <Widget>[
                     Flexible(
                       flex: 6,
-                      child: Text("Nome: ${snapshot.data!.data!.nome}"),
+                      child: Text(
+                        "Nome: ${snapshot.data!.data!.nome}",
+                        style: TextStyle(fontSize: 20, height: 3),
+                        ),
                     ),
                     Flexible(
                       flex: 6,
-                      child: Text("Email: ${snapshot.data!.data!.email}"),
+                      child: Text(
+                        "Email: ${snapshot.data!.data!.email}",
+                        style: TextStyle(fontSize: 20),
+                        ),
+                    ),
+                    const Spacer(
+                      flex: 1
+                    ),
+                    Flexible(
+                      flex: 3,
+                      child: FractionallySizedBox(
+                        widthFactor: 0.4,
+                        heightFactor: 0.3,
+                        child: FilledButton(
+                          onPressed: () => {validateForm(context)},
+                          child: const Text('Alterar senha'),
+                        ),
+                      ),
                     ),
                   ],
                 ),
