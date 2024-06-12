@@ -124,7 +124,7 @@ class _StartPageState extends State<StartPage> {
                     Flexible(
                       flex: 3,
                       child: FractionallySizedBox(
-                        widthFactor: 0.4,
+                        widthFactor: 0.5,
                         heightFactor: 0.3,
                         child: FilledButton(
                           onPressed: () => {validateForm(context)},

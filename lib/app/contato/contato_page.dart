@@ -5,9 +5,9 @@ import 'package:matricularApp/app/login/login_state.dart';
 import 'package:matricularApp/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp/whatsapp.dart';
 
 
 class StartPage extends StatefulWidget {
@@ -22,14 +22,32 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   late AppAPI appAPI;
   LoginState state = LoginState();
+  WhatsApp whatsapp = WhatsApp();
+  int phoneNumber = 5562992729766;
+  @override
+  void initState() {
+    whatsapp.setup(
+      accessToken: "YOUR_ACCESS_TOKEN_HERE",
+      fromNumberId: 5562992536082,
+    );
+    super.initState();
+  }
 
   void sair() {
     appAPI.config.token.set("null");
     Routefly.navigate(routePaths.login);
   }
 
+  abrirWhatsApp2() async {
+    print(await whatsapp.short(
+      to: phoneNumber,
+      message: "Hello Flutter",
+      compress: true,
+    ));
+  }
+
   abrirWhatsApp() async {
-    var whatsappUrl = "whatsapp://send?phone=5562992536082&text=Olá,tudo bem ?";
+    var whatsappUrl = "https://wa.me/5562992729766&text=Olá,tudo bem ?";
 
     if (await canLaunchUrl(Uri.parse(whatsappUrl))) {
       await launchUrl(Uri.parse(whatsappUrl));
@@ -90,8 +108,15 @@ class _StartPageState extends State<StartPage> {
               Flexible(
                 flex: 6,
                 child: TextButton(
-                          onPressed: () {abrirWhatsApp();},
+                          onPressed: () {abrirWhatsApp2();},
                           child: const Text('WhatsApp'),
+                        ),
+              ),
+              Flexible(
+                flex: 6,
+                child: TextButton(
+                          onPressed: () {abrirInstagram();},
+                          child: const Text('Instagram'),
                         ),
               ),
             ],

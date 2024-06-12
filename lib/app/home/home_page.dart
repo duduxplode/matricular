@@ -77,9 +77,13 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.person),
               label: "Minha conta"
           ),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.contacts),
+          //     label: "Contatos"
+          // ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.contacts),
-              label: "Contatos"
+              icon: Icon(Icons.list),
+              label: "Funcionários",
           ),
         ],
       ),
@@ -89,6 +93,6 @@ class _HomePageState extends State<HomePage> {
   void onTabTapped(int index) {
     if(index==0) Routefly.navigate(routePaths.matricula);
     if(index==1) Routefly.navigate(routePaths.conta);
-    if(index==2) Routefly.navigate(routePaths.contato);
+    if(index==2) Routefly.navigate(routePaths.listfuncionario);
   }
 }
