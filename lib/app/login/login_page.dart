@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     onChanged: this.state.login.set,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), label: Text("email")),
+                        border: OutlineInputBorder(), label: Text("cpf")),
                   )),
               const Spacer(
                 flex: 1,

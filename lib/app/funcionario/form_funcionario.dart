@@ -1,4 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:matricular/matricular.dart';
+import 'package:matricularApp/app/api/AppAPI.dart';
+import 'package:matricularApp/routes.dart';
+import 'package:provider/provider.dart';
+import 'package:routefly/routefly.dart';
 import 'package:signals/signals_flutter.dart';
 
 class StartPage extends StatefulWidget {
@@ -10,6 +16,8 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   final _addFormKey = GlobalKey<FormState>();
+  late AppAPI appAPI;
+  late Matricular matricularApi;
 
   final nome = signal('');
   final cpf = signal('');
@@ -29,16 +37,70 @@ class _StartPageState extends State<StartPage> {
         );
   final passwordError = signal<String?>(null);
 
-  validateForm() {
-    if (senha().length > 6 || confirmarSenha().length >6) {
+  void showMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message, style: const TextStyle(fontSize: 22.0)),
+    ));
+  }
+
+  validateForm() async {
+    var ok = false;
+    if (senha().length >= 6 || confirmarSenha().length >= 6) {
       passwordError.value = null;
+      ok = true;
     } else {
       passwordError.value = 'Erro! Mínimo de 6 caracteres';
+    }
+
+    if (ok) {
+      final usuarioApi = matricularApi.getUsuarioControllerApi();
+
+      try {
+        var usuarioBuilder = UsuarioDTOBuilder();
+        usuarioBuilder.pessoaCpf = cpf();
+        usuarioBuilder.pessoaNome = nome();
+        usuarioBuilder.pessoaTelefone = telefone();
+        usuarioBuilder.email = email();
+        usuarioBuilder.cargo = UsuarioDTOCargoEnum.COORDENADORA;
+        usuarioBuilder.senha = senha();
+
+        final response = await usuarioApi.usuarioControllerIncluir(usuarioDTO: usuarioBuilder.build());
+        debugPrint("Dados do Usuario");
+        debugPrint(response.data.toString());
+        if (response.statusCode == 200) {
+          showMessage(context, "Funcionário: ${response.data?.pessoaNome} inserido com sucesso");
+          Routefly.navigate(routePaths.listfuncionario);
+        } else {
+          message() {
+            showMessage(context, "Login Falhou: ${response.data}");
+          }
+          message();
+        }
+      } on DioException catch (e) {
+        MessageResponseBuilder responseBuilder = MessageResponseBuilder();
+        responseBuilder.message = e.response?.data["message"];
+        responseBuilder.status = e.response?.data["status"];
+        responseBuilder.error = e.response?.data["error"];
+        responseBuilder.code = e.response?.data["code"];
+        MessageResponse response = responseBuilder.build();
+
+
+        message() {
+
+          showMessage(context, "Login Falhou: ${response.message}");
+        }
+        message();
+        print(
+            "Exception when calling ControllerHelloWorldApi->helloWorld: $e\n${e.response}");
+      }
+      ;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    appAPI = context.read<AppAPI>();
+    matricularApi = appAPI.api;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -150,6 +212,29 @@ class _StartPageState extends State<StartPage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+				currentIndex: 0,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Minha conta"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: "Lista"
+          ),
+        ],
+      ),
     );
+  }
+  void onTabTapped(int index) {
+    if(index==0) Routefly.navigate(routePaths.home);
+    if(index==1) Routefly.navigate(routePaths.conta);
+    if(index==2) Routefly.navigate(routePaths.listfuncionario);
   }
 }

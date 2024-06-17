@@ -10,7 +10,7 @@ import 'package:matricularApp/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
   const StartPage({super.key});
 
   static Route<void> route() {
@@ -27,6 +27,11 @@ class StartPage extends StatelessWidget {
     );
   }
 
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
   Future<Response<BuiltList<UsuarioDTO>>> _getData(UsuarioControllerApi usuarioControllerApi) async {
     try {
       var dado = await usuarioControllerApi.usuarioControllerListAll();
@@ -116,6 +121,12 @@ class StartPage extends StatelessWidget {
                               /* ... */
                             },
                           ),
+                          ElevatedButton(
+                            child: const Text('Excluir'),
+                            onPressed: () {
+                              excluirUsuario(context, snapshot, index);
+                            },
+                          ),
                         ],
                       ),
                     ],
@@ -136,6 +147,16 @@ class StartPage extends StatelessWidget {
     debugPrint("coisa");
     debugPrint(snapshot.data.toString());
     return Text("id:${snapshot.data!.data?[index]}");
+  }
+  
+  excluirUsuario(BuildContext context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot, int index) async {
+    UsuarioControllerApi? usuarioControllerApi = context.read<AppAPI>().api.getUsuarioControllerApi();
+    int id = snapshot.data!.data![index].id!;
+    debugPrint(id.toString());
+    usuarioControllerApi.usuarioControllerRemover(id: id);
+    setState(() {
+      
+    });
   }
 
 }
