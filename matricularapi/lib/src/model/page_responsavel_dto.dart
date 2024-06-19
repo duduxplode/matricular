@@ -22,9 +22,9 @@ part 'page_responsavel_dto.g.dart';
 /// * [number]
 /// * [sort]
 /// * [pageable]
+/// * [numberOfElements]
 /// * [first]
 /// * [last]
-/// * [numberOfElements]
 /// * [empty]
 @BuiltValue()
 abstract class PageResponsavelDTO
@@ -50,14 +50,14 @@ abstract class PageResponsavelDTO
   @BuiltValueField(wireName: r'pageable')
   PageableObject? get pageable;
 
+  @BuiltValueField(wireName: r'numberOfElements')
+  int? get numberOfElements;
+
   @BuiltValueField(wireName: r'first')
   bool? get first;
 
   @BuiltValueField(wireName: r'last')
   bool? get last;
-
-  @BuiltValueField(wireName: r'numberOfElements')
-  int? get numberOfElements;
 
   @BuiltValueField(wireName: r'empty')
   bool? get empty;
@@ -137,6 +137,13 @@ class _$PageResponsavelDTOSerializer
         specifiedType: const FullType(PageableObject),
       );
     }
+    if (object.numberOfElements != null) {
+      yield r'numberOfElements';
+      yield serializers.serialize(
+        object.numberOfElements,
+        specifiedType: const FullType(int),
+      );
+    }
     if (object.first != null) {
       yield r'first';
       yield serializers.serialize(
@@ -149,13 +156,6 @@ class _$PageResponsavelDTOSerializer
       yield serializers.serialize(
         object.last,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.numberOfElements != null) {
-      yield r'numberOfElements';
-      yield serializers.serialize(
-        object.numberOfElements,
-        specifiedType: const FullType(int),
       );
     }
     if (object.empty != null) {
@@ -240,6 +240,13 @@ class _$PageResponsavelDTOSerializer
           ) as PageableObject;
           result.pageable.replace(valueDes);
           break;
+        case r'numberOfElements':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.numberOfElements = valueDes;
+          break;
         case r'first':
           final valueDes = serializers.deserialize(
             value,
@@ -253,13 +260,6 @@ class _$PageResponsavelDTOSerializer
             specifiedType: const FullType(bool),
           ) as bool;
           result.last = valueDes;
-          break;
-        case r'numberOfElements':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.numberOfElements = valueDes;
           break;
         case r'empty':
           final valueDes = serializers.deserialize(

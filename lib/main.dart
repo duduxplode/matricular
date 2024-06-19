@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:matricular/matricular.dart';
 import 'package:matricularApp/app/api/AppAPI.dart';

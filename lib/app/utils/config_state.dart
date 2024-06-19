@@ -12,7 +12,7 @@ class ConfigState {
   bool disposeCtrl = false;
   ConfigState({required this.prefs}) {
     prefs.read(STORE_URL_KEY).then((value) {
-      url.set(value != '' ? value : 'http://200.137.241.49:8080');
+      url.set(value != '' ? value : 'https://www.associacaosagradafamilia.com.br:8080');
     });
     prefs.read(STORE_TOKEY_KEY).then((value) {
       if(value!="") {

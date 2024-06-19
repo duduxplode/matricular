@@ -9,6 +9,8 @@ import 'package:matricularApp/app/utils/config_state.dart';
 import 'package:matricularApp/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
+import 'package:signals/signals.dart';
+import 'package:signals/signals_flutter.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -32,7 +34,8 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  Future<Response<BuiltList<UsuarioDTO>>> _getData(UsuarioControllerApi usuarioControllerApi) async {
+  Signal refresh = Signal("");
+  Future<Response<BuiltList<UsuarioDTO>>> _getData(UsuarioControllerApi usuarioControllerApi, String refresh) async {
     try {
       var dado = await usuarioControllerApi.usuarioControllerListAll();
       debugPrint("home-page:data:$dado");
@@ -53,12 +56,16 @@ class _StartPageState extends State<StartPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Funcionários '),
       ),
-      body: FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
-          future: _getData(usuarioControllerApi),
-          builder:
-              (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
-            return buildListView(snapshot);
-          }),
+      body: ListenableBuilder(
+        listenable: Routefly.listenable,
+        builder: (context,snapshot) {
+          return FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
+            future: _getData(usuarioControllerApi, refresh.watch(context)),
+            builder:
+                (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
+              return buildListView(snapshot);
+            });}
+      ),
       bottomNavigationBar: BottomNavigationBar(
 				currentIndex: 0,
         onTap: onTabTapped,
@@ -123,7 +130,7 @@ class _StartPageState extends State<StartPage> {
                           ),
                           ElevatedButton(
                             child: const Text('Excluir'),
-                            onPressed: () {
+                            onPressed: () async {
                               excluirUsuario(context, snapshot, index);
                             },
                           ),
@@ -153,10 +160,8 @@ class _StartPageState extends State<StartPage> {
     UsuarioControllerApi? usuarioControllerApi = context.read<AppAPI>().api.getUsuarioControllerApi();
     int id = snapshot.data!.data![index].id!;
     debugPrint(id.toString());
-    usuarioControllerApi.usuarioControllerRemover(id: id);
-    setState(() {
-      
-    });
+    await usuarioControllerApi.usuarioControllerRemover(id: id);
+    refresh.set(id.toString());
   }
 
 }
