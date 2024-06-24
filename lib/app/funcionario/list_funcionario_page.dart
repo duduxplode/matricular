@@ -90,7 +90,7 @@ class _StartPageState extends State<StartPage> {
   void onTabTapped(int index) {
     if(index==0) Routefly.navigate(routePaths.home);
     if(index==1) Routefly.navigate(routePaths.conta);
-    if(index==2) Routefly.navigate(routePaths.funcionario);
+    if(index==2) Routefly.navigate(routePaths.funcionario.formFuncionario);
   }
 
   Widget buildListView(AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
@@ -123,9 +123,9 @@ class _StartPageState extends State<StartPage> {
                       ButtonBar(
                         children: <Widget>[
                           ElevatedButton(
-                            child: const Text('Detalhar'),
-                            onPressed: () {
-                              /* ... */
+                            child: const Text('Editar'),
+                            onPressed: () async {
+                              editarUsuario(snapshot, index);
                             },
                           ),
                           ElevatedButton(
@@ -162,6 +162,10 @@ class _StartPageState extends State<StartPage> {
     debugPrint(id.toString());
     await usuarioControllerApi.usuarioControllerRemover(id: id);
     refresh.set(id.toString());
+  }
+  
+  editarUsuario(AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot, int index) {
+    Routefly.pushNavigate(routePaths.funcionario.path + "/" + snapshot.data!.data![index].id!.toString());
   }
 
 }

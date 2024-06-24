@@ -38,6 +38,13 @@ class _HomePageState extends State<HomePage> {
         title: Text('Home'),
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.person),
+            tooltip: 'Conta',
+            onPressed: this.state.isValid.watch(context)
+                        ? null
+                        : () => {Routefly.navigate(routePaths.conta)},
+          ),
+          IconButton(
             icon: const Icon(Icons.exit_to_app),
             tooltip: 'Sair',
             onPressed: this.state.isValid.watch(context)
@@ -70,12 +77,12 @@ class _HomePageState extends State<HomePage> {
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "Minhas matrículas",
+              icon: Icon(Icons.home),
+              label: "Home",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Minha conta"
+              icon: Icon(Icons.list),
+              label: "Matrículas"
           ),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.contacts),
@@ -91,8 +98,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onTabTapped(int index) {
-    if(index==0) Routefly.navigate(routePaths.matricula);
-    if(index==1) Routefly.navigate(routePaths.conta);
-    if(index==2) Routefly.navigate(routePaths.listfuncionario);
+    if(index==0) Routefly.navigate(routePaths.home);
+    if(index==1) Routefly.navigate(routePaths.matricula.listMatricula);
+    if(index==2) Routefly.navigate(routePaths.funcionario.listFuncionario);
   }
 }

@@ -69,10 +69,10 @@ class _StartPageState extends State<StartPage> {
         debugPrint(response.data.toString());
         if (response.statusCode == 200) {
           showMessage(context, "Funcionário: ${response.data?.pessoaNome} inserido com sucesso");
-          Routefly.navigate(routePaths.listfuncionario);
+          Routefly.navigate(routePaths.funcionario.listFuncionario);
         } else {
           message() {
-            showMessage(context, "Login Falhou: ${response.data}");
+            showMessage(context, "Inserção Falhou: ${response.data}");
           }
           message();
         }
@@ -87,11 +87,11 @@ class _StartPageState extends State<StartPage> {
 
         message() {
 
-          showMessage(context, "Login Falhou: ${response.message}");
+          showMessage(context, "Inserção Falhou: ${response.message}");
         }
         message();
         print(
-            "Exception when calling ControllerHelloWorldApi->helloWorld: $e\n${e.response}");
+            "Exception when calling usuarioControllerIncluir: $e\n${e.response}");
       }
       ;
     }
@@ -235,6 +235,6 @@ class _StartPageState extends State<StartPage> {
   void onTabTapped(int index) {
     if(index==0) Routefly.navigate(routePaths.home);
     if(index==1) Routefly.navigate(routePaths.conta);
-    if(index==2) Routefly.navigate(routePaths.listfuncionario);
+    if(index==2) Routefly.navigate(routePaths.funcionario.listFuncionario);
   }
 }
