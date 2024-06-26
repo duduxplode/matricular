@@ -48,16 +48,20 @@ class _StartPageState extends State<StartPage> {
 
   validateForm() async {
     final usuarioApi = matricularApi.getUsuarioControllerApi();
+    final authAPIApi = matricularApi.getAuthAPIApi();
 
     try {
-      var usuarioBuilder = UsuarioDTOBuilder();
+      var usuarioBuilder = UsuarioAlterarDTOBuilder();
+      usuarioBuilder.id = id;
       usuarioBuilder.pessoaCpf = cpf();
       usuarioBuilder.pessoaNome = nome();
       usuarioBuilder.pessoaTelefone = telefone();
       usuarioBuilder.email = email();
-      usuarioBuilder.cargo = UsuarioDTOCargoEnum.valueOf(cargo());
+      usuarioBuilder.cargo = UsuarioAlterarDTOCargoEnum.valueOf(cargo());
+      var dado = await authAPIApi.getInfoByToken(authorization: appAPI!.config.token.value);
+      usuarioBuilder.idUsuarioRequisicao = dado.data?.id;
 
-      final response = await usuarioApi.usuarioControllerAlterar(id: id, usuarioDTO: usuarioBuilder.build());
+      final response = await usuarioApi.usuarioControllerNovoAlterar(id: id, usuarioAlterarDTO: usuarioBuilder.build());
       debugPrint("Dados do Usuario");
       debugPrint(response.data.toString());
       if (response.statusCode == 200) {

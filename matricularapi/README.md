@@ -61,7 +61,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://www.associacaosagradafamilia.com.br:8080*
+All URIs are relative to *http://200.137.241.49:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

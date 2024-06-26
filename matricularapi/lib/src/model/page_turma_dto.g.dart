@@ -22,11 +22,11 @@ class _$PageTurmaDTO extends PageTurmaDTO {
   @override
   final PageableObject? pageable;
   @override
-  final int? numberOfElements;
-  @override
   final bool? first;
   @override
   final bool? last;
+  @override
+  final int? numberOfElements;
   @override
   final bool? empty;
 
@@ -41,9 +41,9 @@ class _$PageTurmaDTO extends PageTurmaDTO {
       this.number,
       this.sort,
       this.pageable,
-      this.numberOfElements,
       this.first,
       this.last,
+      this.numberOfElements,
       this.empty})
       : super._();
 
@@ -65,9 +65,9 @@ class _$PageTurmaDTO extends PageTurmaDTO {
         number == other.number &&
         sort == other.sort &&
         pageable == other.pageable &&
-        numberOfElements == other.numberOfElements &&
         first == other.first &&
         last == other.last &&
+        numberOfElements == other.numberOfElements &&
         empty == other.empty;
   }
 
@@ -81,9 +81,9 @@ class _$PageTurmaDTO extends PageTurmaDTO {
     _$hash = $jc(_$hash, number.hashCode);
     _$hash = $jc(_$hash, sort.hashCode);
     _$hash = $jc(_$hash, pageable.hashCode);
-    _$hash = $jc(_$hash, numberOfElements.hashCode);
     _$hash = $jc(_$hash, first.hashCode);
     _$hash = $jc(_$hash, last.hashCode);
+    _$hash = $jc(_$hash, numberOfElements.hashCode);
     _$hash = $jc(_$hash, empty.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -99,9 +99,9 @@ class _$PageTurmaDTO extends PageTurmaDTO {
           ..add('number', number)
           ..add('sort', sort)
           ..add('pageable', pageable)
-          ..add('numberOfElements', numberOfElements)
           ..add('first', first)
           ..add('last', last)
+          ..add('numberOfElements', numberOfElements)
           ..add('empty', empty))
         .toString();
   }
@@ -142,11 +142,6 @@ class PageTurmaDTOBuilder
       _$this._pageable ??= new PageableObjectBuilder();
   set pageable(PageableObjectBuilder? pageable) => _$this._pageable = pageable;
 
-  int? _numberOfElements;
-  int? get numberOfElements => _$this._numberOfElements;
-  set numberOfElements(int? numberOfElements) =>
-      _$this._numberOfElements = numberOfElements;
-
   bool? _first;
   bool? get first => _$this._first;
   set first(bool? first) => _$this._first = first;
@@ -154,6 +149,11 @@ class PageTurmaDTOBuilder
   bool? _last;
   bool? get last => _$this._last;
   set last(bool? last) => _$this._last = last;
+
+  int? _numberOfElements;
+  int? get numberOfElements => _$this._numberOfElements;
+  set numberOfElements(int? numberOfElements) =>
+      _$this._numberOfElements = numberOfElements;
 
   bool? _empty;
   bool? get empty => _$this._empty;
@@ -173,9 +173,9 @@ class PageTurmaDTOBuilder
       _number = $v.number;
       _sort = $v.sort?.toBuilder();
       _pageable = $v.pageable?.toBuilder();
-      _numberOfElements = $v.numberOfElements;
       _first = $v.first;
       _last = $v.last;
+      _numberOfElements = $v.numberOfElements;
       _empty = $v.empty;
       _$v = null;
     }
@@ -208,9 +208,9 @@ class PageTurmaDTOBuilder
               number: number,
               sort: _sort?.build(),
               pageable: _pageable?.build(),
-              numberOfElements: numberOfElements,
               first: first,
               last: last,
+              numberOfElements: numberOfElements,
               empty: empty);
     } catch (_) {
       late String _$failedField;

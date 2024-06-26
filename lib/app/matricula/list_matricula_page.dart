@@ -112,8 +112,8 @@ class StartPage extends StatelessWidget {
                         children: <Widget>[
                           ElevatedButton(
                             child: const Text('Detalhar'),
-                            onPressed: () {
-                              /* ... */
+                            onPressed: () async {
+                              detalharMatricula(snapshot, index);
                             },
                           ),
                         ],
@@ -129,6 +129,10 @@ class StartPage extends StatelessWidget {
     } else {
       return CircularProgressIndicator();
     }
+  }
+
+  detalharMatricula(AsyncSnapshot<Response<BuiltList<MatriculaDTO>>> snapshot, int index) {
+    Routefly.pushNavigate(routePaths.matricula.path + "/" + snapshot.data!.data![index].id!.toString());
   }
 
   Text buildItemList(

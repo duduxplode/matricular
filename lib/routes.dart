@@ -10,6 +10,7 @@ import 'app/login/login_page.dart' as a6;
 import 'app/login_form/login_form_page.dart' as a7;
 import 'app/matricula/list_matricula_page.dart' as a8;
 import 'app/prefs/prefs_page.dart' as a9;
+import 'app/matricula/[id]_page.dart' as a10;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -94,6 +95,15 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
+    key: '/matricula/[id]',
+    uri: Uri.parse('/matricula/[id]'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a10.StartPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/prefs',
     uri: Uri.parse('/prefs'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
@@ -120,6 +130,7 @@ const routePaths = (
   matricula: (
     path: '/matricula',
     listMatricula: '/matricula/list_matricula',
+    $id: '/matricula/[id]',
   ),
   prefs: '/prefs',
 );

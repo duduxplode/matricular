@@ -22,9 +22,9 @@ part 'page_necessidade_especial_dto.g.dart';
 /// * [number]
 /// * [sort]
 /// * [pageable]
-/// * [numberOfElements]
 /// * [first]
 /// * [last]
+/// * [numberOfElements]
 /// * [empty]
 @BuiltValue()
 abstract class PageNecessidadeEspecialDTO
@@ -51,14 +51,14 @@ abstract class PageNecessidadeEspecialDTO
   @BuiltValueField(wireName: r'pageable')
   PageableObject? get pageable;
 
-  @BuiltValueField(wireName: r'numberOfElements')
-  int? get numberOfElements;
-
   @BuiltValueField(wireName: r'first')
   bool? get first;
 
   @BuiltValueField(wireName: r'last')
   bool? get last;
+
+  @BuiltValueField(wireName: r'numberOfElements')
+  int? get numberOfElements;
 
   @BuiltValueField(wireName: r'empty')
   bool? get empty;
@@ -143,13 +143,6 @@ class _$PageNecessidadeEspecialDTOSerializer
         specifiedType: const FullType(PageableObject),
       );
     }
-    if (object.numberOfElements != null) {
-      yield r'numberOfElements';
-      yield serializers.serialize(
-        object.numberOfElements,
-        specifiedType: const FullType(int),
-      );
-    }
     if (object.first != null) {
       yield r'first';
       yield serializers.serialize(
@@ -162,6 +155,13 @@ class _$PageNecessidadeEspecialDTOSerializer
       yield serializers.serialize(
         object.last,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.numberOfElements != null) {
+      yield r'numberOfElements';
+      yield serializers.serialize(
+        object.numberOfElements,
+        specifiedType: const FullType(int),
       );
     }
     if (object.empty != null) {
@@ -246,13 +246,6 @@ class _$PageNecessidadeEspecialDTOSerializer
           ) as PageableObject;
           result.pageable.replace(valueDes);
           break;
-        case r'numberOfElements':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.numberOfElements = valueDes;
-          break;
         case r'first':
           final valueDes = serializers.deserialize(
             value,
@@ -266,6 +259,13 @@ class _$PageNecessidadeEspecialDTOSerializer
             specifiedType: const FullType(bool),
           ) as bool;
           result.last = valueDes;
+          break;
+        case r'numberOfElements':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.numberOfElements = valueDes;
           break;
         case r'empty':
           final valueDes = serializers.deserialize(

@@ -5,7 +5,7 @@
 import 'package:matricular/api.dart';
 ```
 
-All URIs are relative to *https://www.associacaosagradafamilia.com.br:8080*
+All URIs are relative to *http://200.137.241.49:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -320,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **usuarioControllerNovoAlterar**
-> usuarioControllerNovoAlterar(id, usuarioAlterarDTO)
+> UsuarioDTO usuarioControllerNovoAlterar(id, usuarioAlterarDTO)
 
 
 
@@ -335,7 +335,8 @@ final int id = 789; // int |
 final UsuarioAlterarDTO usuarioAlterarDTO = ; // UsuarioAlterarDTO | 
 
 try {
-    api.usuarioControllerNovoAlterar(id, usuarioAlterarDTO);
+    final response = api.usuarioControllerNovoAlterar(id, usuarioAlterarDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling UsuarioControllerApi->usuarioControllerNovoAlterar: $e\n');
 }
@@ -350,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**UsuarioDTO**](UsuarioDTO.md)
 
 ### Authorization
 
